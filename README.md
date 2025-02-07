@@ -1,7 +1,7 @@
 # Software Quality
 
 <h1 align="center">
-  <a href="https://www.nhlstenden.com/"><img src="src/assets/nhl.png" alt="NHL Logo" height="150"></a>
+  <a href="https://www.nhlstenden.com/"><img src="nhl.png" alt="NHL Logo" height="150"></a>
 </h1>
 This project, developed for NHL Stenden University by Yunus Karakoc and Elmedin Arifi, focuses on improving and optimizing existing Java code.  The project emphasizes software quality principles through rigorous testing, analysis, and code re-optimization.
 
