@@ -25,7 +25,7 @@ public class Presentation {
 	}
 
 	public Presentation(SlideViewerComponent slideViewerComponent) {
-		this.this.slideViewComponent = slideViewerComponent;
+		this.slideViewComponent = slideViewerComponent;
 		this.clear();
 	}
 

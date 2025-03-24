@@ -53,23 +53,23 @@ public class MenuController extends MenuBar {
 		fileMenu.add(menuItem = this.mkMenuItem(OPEN));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
-				this.presentation.clear();
+				presentation.clear();
 				Accessor xmlAccessor = new XMLAccessor();
 				try {
-					xmlAccessor.loadFile(this.presentation, TESTFILE);
-					this.presentation.setSlideNumber(0);
+					xmlAccessor.loadFile(presentation, TESTFILE);
+					presentation.setSlideNumber(0);
 				} catch (IOException exc) {
-					JOptionPane.showMessageDialog(this.parent, IOEX + exc, 
+					JOptionPane.showMessageDialog(parent, IOEX + exc,
          			LOADERR, JOptionPane.ERROR_MESSAGE);
 				}
-				this.parent.repaint();
+				parent.repaint();
 			}
 		} );
 		fileMenu.add(menuItem = this.mkMenuItem(NEW));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
-				this.presentation.clear();
-				this.parent.repaint();
+				presentation.clear();
+				parent.repaint();
 			}
 		});
 		fileMenu.add(menuItem = this.mkMenuItem(SAVE));
@@ -77,9 +77,9 @@ public class MenuController extends MenuBar {
 			public void actionPerformed(ActionEvent e) {
 				Accessor xmlAccessor = new XMLAccessor();
 				try {
-					xmlAccessor.saveFile(this.presentation, SAVEFILE);
+					xmlAccessor.saveFile(presentation, SAVEFILE);
 				} catch (IOException exc) {
-					JOptionPane.showMessageDialog(this.parent, IOEX + exc, 
+					JOptionPane.showMessageDialog(parent, IOEX + exc,
 							SAVEERR, JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -88,7 +88,7 @@ public class MenuController extends MenuBar {
 		fileMenu.add(menuItem = this.mkMenuItem(EXIT));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
-				this.presentation.exit(0);
+				presentation.exit(0);
 			}
 		});
 		this.add(fileMenu);
@@ -96,13 +96,13 @@ public class MenuController extends MenuBar {
 		viewMenu.add(menuItem = this.mkMenuItem(NEXT));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
-				this.presentation.nextSlide();
+				presentation.nextSlide();
 			}
 		});
 		viewMenu.add(menuItem = this.mkMenuItem(PREV));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
-				this.presentation.prevSlide();
+				presentation.prevSlide();
 			}
 		});
 		viewMenu.add(menuItem = this.mkMenuItem(GOTO));
@@ -110,7 +110,7 @@ public class MenuController extends MenuBar {
 			public void actionPerformed(ActionEvent actionEvent) {
 				String pageNumberStr = JOptionPane.showInputDialog((Object)PAGENR);
 				int pageNumber = Integer.parseInt(pageNumberStr);
-				this.presentation.setSlideNumber(pageNumber - 1);
+				presentation.setSlideNumber(pageNumber - 1);
 			}
 		});
 		this.add(viewMenu);
@@ -118,7 +118,7 @@ public class MenuController extends MenuBar {
 		helpMenu.add(menuItem = this.mkMenuItem(ABOUT));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
-				AboutBox.show(this.parent);
+				AboutBox.show(parent);
 			}
 		});
 		this.setHelpMenu(helpMenu);
