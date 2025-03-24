@@ -28,14 +28,13 @@ public class SlideViewerFrame extends JFrame {
 		setupWindow(slideViewerComponent, presentation);
 	}
 
-	public void setupWindow(SlideViewerComponent 
-			slideViewerComponent, Presentation presentation) {
+	public void setupWindow(SlideViewerComponent slideViewerComponent, Presentation presentation) {
 		setTitle(JABTITLE);
 		addWindowListener(new WindowAdapter() {
-				public void windowClosing(WindowEvent e) {
-					System.exit(0);
-				}
-			});
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+		});
 		getContentPane().add(slideViewerComponent);
 		addKeyListener(new KeyController(presentation)); 
 		setMenuBar(new MenuController(this, presentation));	
