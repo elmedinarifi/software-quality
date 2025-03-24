@@ -20,8 +20,8 @@ import javax.swing.JOptionPane;
  */
 public class MenuController extends MenuBar {
 	
-	private Frame parent; // het frame, alleen gebruikt als ouder voor de Dialogs
-	private Presentation presentation; // Er worden commando's gegeven aan de presentatie
+	private Frame parent;
+	private Presentation presentation;
 	
 	private static final long serialVersionUID = 227L;
 	
@@ -121,10 +121,9 @@ public class MenuController extends MenuBar {
 				AboutBox.show(parent);
 			}
 		});
-		setHelpMenu(helpMenu);		// nodig for portability (Motif, etc.).
+		setHelpMenu(helpMenu);
 	}
 
-// een menu-item aanmaken
 	public MenuItem mkMenuItem(String name) {
 		return new MenuItem(name, new MenuShortcut(name.charAt(0)));
 	}

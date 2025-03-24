@@ -19,9 +19,9 @@ import javax.swing.JFrame;
 
 public class SlideViewerComponent extends JComponent {
 		
-	private Slide slide; // de huidige slide
-	private Font labelFont = null; // het font voor labels
-	private Presentation presentation = null; // de presentatie
+	private Slide slide;
+	private Font labelFont = null; 
+	private Presentation presentation = null; 
 	private JFrame frame = null;
 	
 	private static final long serialVersionUID = 227L;
@@ -56,7 +56,6 @@ public class SlideViewerComponent extends JComponent {
 		frame.setTitle(presentation.getTitle());
 	}
 
-// teken de slide
 	public void paintComponent(Graphics g) {
 		g.setColor(BGCOLOR);
 		g.fillRect(0, 0, getSize().width, getSize().height);
