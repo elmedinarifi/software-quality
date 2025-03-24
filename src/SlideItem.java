@@ -17,7 +17,7 @@ public abstract class SlideItem {
 	private int level = 0; 
 
 	public SlideItem(int lev) {
-		level = lev;
+		this.level = lev;
 	}
 
 	public SlideItem() {
@@ -25,7 +25,7 @@ public abstract class SlideItem {
 	}
 
 	public int getLevel() {
-		return level;
+		return this.level;
 	}
 
 	public abstract Rectangle getBoundingBox(Graphics g, ImageObserver observer, float scale, Style style);
