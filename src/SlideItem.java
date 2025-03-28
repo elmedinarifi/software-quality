@@ -2,15 +2,22 @@ import java.awt.Rectangle;
 import java.awt.Graphics;
 import java.awt.image.ImageObserver;
 
-/**
- * De abstracte klasse voor een item op een Slide.
- * Implementatie van de Template Method Pattern.
- */
-public abstract class SlideItem {
-	private int level;
+/** <p>De abstracte klasse voor een item op een Slide<p>
+ * <p>Alle SlideItems hebben tekenfunctionaliteit.</p>
+ * @author Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
+ * @version 1.1 2002/12/17 Gert Florijn
+ * @version 1.2 2003/11/19 Sylvia Stuurman
+ * @version 1.3 2004/08/17 Sylvia Stuurman
+ * @version 1.4 2007/07/16 Sylvia Stuurman
+ * @version 1.5 2010/03/03 Sylvia Stuurman
+ * @version 1.6 2014/05/16 Sylvia Stuurman
+*/
 
-	public SlideItem(int level) {
-		this.level = level;
+public abstract class SlideItem {
+	private int level = 0; 
+
+	public SlideItem(int lev) {
+		this.level = lev;
 	}
 
 	public SlideItem() {
@@ -18,17 +25,10 @@ public abstract class SlideItem {
 	}
 
 	public int getLevel() {
-		return level;
+		return this.level;
 	}
-
-	public final void render(int x, int y, float scale, Graphics g, ImageObserver observer) {
-		Style style = Style.getStyle(getLevel()); // 🟢 Get the correct style
-		g.setColor(style.color);
-		g.setFont(style.getFont(scale));
-		draw(x, y, scale, g, style, observer); // 🔥 Calls subclass-specific drawing logic
-	}
-
-	protected abstract void draw(int x, int y, float scale, Graphics g, Style style, ImageObserver observer);
 
 	public abstract Rectangle getBoundingBox(Graphics g, ImageObserver observer, float scale, Style style);
+
+	public abstract void draw(int x, int y, float scale, Graphics g, Style style, ImageObserver observer);
 }

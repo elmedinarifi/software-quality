@@ -43,15 +43,15 @@ public class Style {
 	public Style(int indent, Color color, int points, int leading) {
 		this.indent = indent;
 		this.color = color;
-		font = new Font(FONTNAME, Font.BOLD, fontSize=points);
+		this.font = new Font(FONTNAME, Font.BOLD, this.fontSize=points);
 		this.leading = leading;
 	}
 
 	public String toString() {
-		return "["+ indent + "," + color + "; " + fontSize + " on " + leading +"]";
+		return "["+ this.indent + "," + this.color + "; " + this.fontSize + " on " + this.leading +"]";
 	}
 
 	public Font getFont(float scale) {
-		return font.deriveFont(fontSize * scale);
+		return this.font.deriveFont(this.fontSize * scale);
 	}
 }

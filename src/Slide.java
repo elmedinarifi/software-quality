@@ -20,51 +20,51 @@ public class Slide {
 	protected Vector<SlideItem> items;
 
 	public Slide() {
-		items = new Vector<SlideItem>();
+		this.items = new Vector<SlideItem>();
 	}
 
 	public void append(SlideItem anItem) {
-		items.addElement(anItem);
+		this.items.addElement(anItem);
 	}
 
 	public String getTitle() {
-		return title;
+		return this.title;
 	}
 
 	public void setTitle(String newTitle) {
-		title = newTitle;
+		this.title = newTitle;
 	}
 
 	public void append(int level, String message) {
-		append(new TextItem(level, message));
+		this.append(new TextItem(level, message));
 	}
 
 	public SlideItem getSlideItem(int number) {
-		return (SlideItem)items.elementAt(number);
+		return (SlideItem) this.items.elementAt(number);
 	}
 
 	public Vector<SlideItem> getSlideItems() {
-		return items;
+		return this.items;
 	}
 
 	public int getSize() {
-		return items.size();
+		return this.items.size();
 	}
 
 	public void draw(Graphics g, Rectangle area, ImageObserver view) {
-		float scale = getScale(area);
+		float scale = this.getScale(area);
 	    int y = area.y;
-	    SlideItem slideItem = new TextItem(0, getTitle());
+	    SlideItem slideItem = new TextItem(0, this.getTitle());
 	    Style style = Style.getStyle(slideItem.getLevel());
 	    slideItem.draw(area.x, y, scale, g, style, view);
 	    y += slideItem.getBoundingBox(g, view, scale, style).height;
-	    for (int number=0; number<getSize(); number++) {
-	      slideItem = (SlideItem)getSlideItems().elementAt(number);
+	    for (int number=0; number<this.getSize(); number++) {
+	      slideItem = (SlideItem) this.getSlideItems().elementAt(number);
 	      style = Style.getStyle(slideItem.getLevel());
 	      slideItem.draw(area.x, y, scale, g, style, view);
 	      y += slideItem.getBoundingBox(g, view, scale, style).height;
 	    }
-	  }
+	}
 
 	private float getScale(Rectangle area) {
 		return Math.min(((float)area.width) / ((float)WIDTH), ((float)area.height) / ((float)HEIGHT));
