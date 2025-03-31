@@ -28,6 +28,13 @@ public abstract class SlideItem {
 		return this.level;
 	}
 
+	public final void render(int x, int y, float scale, Graphics g, ImageObserver observer) {
+		Style style = Style.getStyle(getLevel()); // 🟢 Get the correct style
+		g.setColor(style.color);
+		g.setFont(style.getFont(scale));
+		draw(x, y, scale, g, style, observer); // 🔥 Calls subclass-specific drawing logic
+	}
+
 	public abstract Rectangle getBoundingBox(Graphics g, ImageObserver observer, float scale, Style style);
 
 	public abstract void draw(int x, int y, float scale, Graphics g, Style style, ImageObserver observer);
