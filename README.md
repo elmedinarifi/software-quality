@@ -22,14 +22,3 @@ The primary goal of this project is to enhance the quality and performance of Ja
 
 * Elmedin Arifi
 * Yunus Karakoc
-
-## Getting Started (Using Docker)
-
-This project is designed to be run exclusively within a Docker container.  Follow these steps to get started:
-
-1. **Prerequisites:** Ensure you have Docker installed on your system.  You can download and install Docker from [https://www.docker.com/](https://www.docker.com/).
-
-2. **Building the Docker Image:** Navigate to the project directory in your terminal and run the following command to build the Docker image:
-
-   ```bash
-   docker build -t software-quality-project .
