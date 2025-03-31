@@ -16,7 +16,7 @@ The primary goal of this project is to enhance the quality and performance of Ja
 ## Technologies Used
 
 * Java
-* Docker
+* Astah
 
 ## Development Team
 
