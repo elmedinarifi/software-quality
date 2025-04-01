@@ -8,6 +8,6 @@ public class ExitCommand extends Command {
 
     @Override
     public void execute() {
-        receiver.exitCommand();
+        this.receiver.exitCommand();
     }
 }

@@ -120,7 +120,7 @@ public class MenuController extends MenuBar {
 				String pageNumberStr = JOptionPane.showInputDialog((Object) PAGENR);
 				try {
 					int pageNumber = Integer.parseInt(pageNumberStr);
-					new GoToCommand(receiver, presentation, pageNumber - 1).execute();
+					new GoToCommand(receiver, pageNumber - 1).execute();
 				} catch (NumberFormatException e) {
 					JOptionPane.showMessageDialog(parent, "Voer een geldig nummer in.", "Fout", JOptionPane.ERROR_MESSAGE);
 				}

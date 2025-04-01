@@ -7,6 +7,6 @@ public class NewPageCommand extends Command {
 
     @Override
     public void execute() {
-        receiver.newPageCommand();
+        this.receiver.newPageCommand();
     }
 }

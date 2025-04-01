@@ -105,20 +105,6 @@ public class XMLAccessor extends Accessor {
 
 		SlideItem slideItem = this.slideItemFactory.createSlideItem(itemTypes, level, item.getTextContent());
 		slide.append(slideItem);
-
-//		if (TEXT.equals(type)) {
-//			slide.append(new TextItem(level, item.getTextContent()));
-//		}
-//		else {
-//			if (IMAGE.equals(type)) {
-//				slide.append(new BitmapItem(level, item.getTextContent()));
-//			}
-//			else {
-//				System.err.println(UNKNOWNTYPE);
-//			}
-//		}
-
-
 	}
 
 	public void saveFile(Presentation presentation, String filename) throws IOException {

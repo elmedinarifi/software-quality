@@ -7,6 +7,6 @@ public class NextSlideCommand extends Command {
 
     @Override
     public void execute() {
-        receiver.nextSlideCommand();
+        this.receiver.nextSlideCommand();
     }
 }

@@ -11,6 +11,6 @@ public class OpenFileCommand extends Command {
 
     @Override
     public void execute() throws IOException {
-        receiver.openFileCommand(filename);
+        this.receiver.openFileCommand(this.filename);
     }
 }

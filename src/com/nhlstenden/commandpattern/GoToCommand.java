@@ -5,21 +5,15 @@ import com.nhlstenden.demo.Presentation;
 import java.io.IOException;
 
 public class GoToCommand extends Command {
-
-    private Presentation presentation;
-    private int slideNumber;
-    public GoToCommand(Receiver receiver, Presentation presentation, int slideNumber) {
+    private int pageNumber;
+    public GoToCommand(Receiver receiver, int pageNumber)
+    {
         super(receiver);
-        this.presentation = presentation;
-        this.slideNumber = slideNumber;
+        this.pageNumber = pageNumber;
     }
 
     @Override
     public void execute() {
-        if (slideNumber >= 0 && slideNumber < presentation.getSize()) {
-            presentation.setSlideNumber(slideNumber);
-        } else {
-            System.out.println("Ongeldig slide nummer: " + slideNumber);
-        }
+        this.receiver.goToCommand(this.pageNumber);
     }
 }

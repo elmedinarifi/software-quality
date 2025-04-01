@@ -7,6 +7,6 @@ public class PrevSlideCommand extends Command {
 
     @Override
     public void execute() {
-        receiver.prevSlideCommand();
+        this.receiver.prevSlideCommand();
     }
 }

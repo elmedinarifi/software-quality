@@ -40,7 +40,7 @@ public class Receiver {
 
     public void saveFileCommand(String filename) throws IOException{
         try{
-            new XMLAccessor().saveFile(presentation, filename);
+            new XMLAccessor().saveFile(this.presentation, filename);
             System.out.println("Bestand is opgeslagen" + filename);
         } catch (IOException exception) {
             System.err.println("Bestand is niet opgeslagen:" + exception.getMessage());
@@ -49,7 +49,7 @@ public class Receiver {
 
     public void openFileCommand(String filename) {
         try {
-            new XMLAccessor().loadFile(presentation, filename);
+            new XMLAccessor().loadFile(this.presentation, filename);
             System.out.println("Bestand geopend: " + filename);
         } catch (IOException exception) {
             System.err.println("Fout bij openen: " + exception.getMessage());
@@ -57,18 +57,27 @@ public class Receiver {
     }
 
     public void prevSlideCommand() {
-        presentation.prevSlide();
+        this.presentation.prevSlide();
     }
 
     public void nextSlideCommand() {
-        presentation.nextSlide();
+        this.presentation.nextSlide();
     }
 
     public void newPageCommand() {
-        presentation.clear();
+        this.presentation.clear();
     }
 
     public void exitCommand() {
         System.exit(0);
     }
+
+    public void goToCommand(int slideNumber) {
+        if (slideNumber >= 0 && slideNumber < this.presentation.getSize()) {
+            this.presentation.setSlideNumber(slideNumber);
+        } else {
+            System.out.println("Ongeldig slide nummer: " + slideNumber);
+        }
+    }
+
 }
