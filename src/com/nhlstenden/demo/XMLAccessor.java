@@ -30,8 +30,13 @@ import org.w3c.dom.NodeList;
 
 public class XMLAccessor extends Accessor {
 	private SlideItemFactory slideItemFactory;
-	
-    protected static final String DEFAULT_API_TO_USE = "dom";
+
+	public XMLAccessor(SlideItemFactory slideItemFactory)
+	{
+		this.slideItemFactory = slideItemFactory;
+	}
+
+	protected static final String DEFAULT_API_TO_USE = "dom";
     
     protected static final String SHOWTITLE = "showtitle";
     protected static final String SLIDETITLE = "title";

@@ -1,6 +1,7 @@
 package com.nhlstenden.demo;
 
 import com.nhlstenden.commandpattern.Receiver;
+import com.nhlstenden.factorypattern.SlideItemFactory;
 import com.nhlstenden.factorypattern.SlideViewerFrame;
 import com.nhlstenden.factorypattern.Style;
 
@@ -48,7 +49,9 @@ public class JabberPoint {
 			if (argv.length == 0) {
 				Accessor.getDemoAccessor().loadFile(jabberpoint.getPresentation(), "");
 			} else {
-				new XMLAccessor().loadFile(jabberpoint.getPresentation(), argv[0]);
+				SlideItemFactory slideItemFactory = new SlideItemFactory();
+
+				new XMLAccessor(slideItemFactory).loadFile(jabberpoint.getPresentation(), argv[0]);
 			}
 			jabberpoint.getPresentation().setSlideNumber(0);
 		} catch (IOException ex) {

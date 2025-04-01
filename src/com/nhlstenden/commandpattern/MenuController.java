@@ -4,6 +4,7 @@ import com.nhlstenden.demo.AboutBox;
 import com.nhlstenden.demo.Accessor;
 import com.nhlstenden.demo.Presentation;
 import com.nhlstenden.demo.XMLAccessor;
+import com.nhlstenden.factorypattern.SlideItemFactory;
 
 import java.awt.MenuBar;
 import java.awt.Frame;
@@ -63,7 +64,8 @@ public class MenuController extends MenuBar {
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				presentation.clear();
-				Accessor xmlAccessor = new XMLAccessor();
+				SlideItemFactory slideItemFactory = new SlideItemFactory();
+				Accessor xmlAccessor = new XMLAccessor(slideItemFactory);
 				try {
 					new OpenFileCommand(receiver, TESTFILE).execute();
 					presentation.setSlideNumber(0);
@@ -84,7 +86,8 @@ public class MenuController extends MenuBar {
 		fileMenu.add(menuItem = this.mkMenuItem(SAVE));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Accessor xmlAccessor = new XMLAccessor();
+				SlideItemFactory slideItemFactory = new SlideItemFactory();
+				Accessor xmlAccessor = new XMLAccessor(slideItemFactory);
 				try {
 					new SaveFileCommand(receiver, SAVEFILE).execute();
 				} catch (IOException exc) {
@@ -127,14 +130,6 @@ public class MenuController extends MenuBar {
 			}
 		});
 
-//		viewMenu.add(menuItem = this.mkMenuItem(GOTO));
-//		menuItem.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent actionEvent) {
-//				String pageNumberStr = JOptionPane.showInputDialog((Object)PAGENR);
-//				int pageNumber = Integer.parseInt(pageNumberStr);
-//				presentation.setSlideNumber(pageNumber - 1);
-//			}
-//		});
 		this.add(viewMenu);
 		Menu helpMenu = new Menu(HELP);
 		helpMenu.add(menuItem = this.mkMenuItem(ABOUT));

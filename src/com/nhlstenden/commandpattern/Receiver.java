@@ -4,6 +4,7 @@ import com.nhlstenden.demo.JabberPoint;
 import com.nhlstenden.demo.Presentation;
 import com.nhlstenden.factorypattern.Slide;
 import com.nhlstenden.demo.XMLAccessor;
+import com.nhlstenden.factorypattern.SlideItemFactory;
 
 import java.io.IOException;
 
@@ -40,7 +41,8 @@ public class Receiver {
 
     public void saveFileCommand(String filename) throws IOException{
         try{
-            new XMLAccessor().saveFile(this.presentation, filename);
+            SlideItemFactory slideItemFactory = new SlideItemFactory();
+            new XMLAccessor(slideItemFactory).saveFile(this.presentation, filename);
             System.out.println("Bestand is opgeslagen" + filename);
         } catch (IOException exception) {
             System.err.println("Bestand is niet opgeslagen:" + exception.getMessage());
@@ -49,7 +51,8 @@ public class Receiver {
 
     public void openFileCommand(String filename) {
         try {
-            new XMLAccessor().loadFile(this.presentation, filename);
+            SlideItemFactory slideItemFactory = new SlideItemFactory();
+            new XMLAccessor(slideItemFactory).loadFile(this.presentation, filename);
             System.out.println("Bestand geopend: " + filename);
         } catch (IOException exception) {
             System.err.println("Fout bij openen: " + exception.getMessage());

@@ -38,7 +38,9 @@ public class Slide {
 	}
 
 	public void append(int level, String message) {
-		this.append(new TextItem(level, message));
+		SlideItemFactory factory = new SlideItemFactory();
+		SlideItem item = factory.createSlideItem(SlideItemTypes.TEXT_ITEM, level, message);
+		this.append(item);
 	}
 
 	public SlideItem getSlideItem(int number) {
@@ -56,8 +58,9 @@ public class Slide {
 	public void draw(Graphics g, Rectangle area, ImageObserver view) {
 		float scale = this.getScale(area);
 	    int y = area.y;
-	    SlideItem slideItem = new TextItem(0, this.getTitle());
-	    Style style = Style.getStyle(slideItem.getLevel());
+		SlideItemFactory factory = new SlideItemFactory();
+		SlideItem slideItem = factory.createSlideItem(SlideItemTypes.TEXT_ITEM, 0, this.getTitle());
+		Style style = Style.getStyle(slideItem.getLevel());
 	    slideItem.draw(area.x, y, scale, g, style, view);
 	    y += slideItem.getBoundingBox(g, view, scale, style).height;
 	    for (int number=0; number<this.getSize(); number++) {
