@@ -10,10 +10,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import com.nhlstenden.factorypattern.BitmapItem;
-import com.nhlstenden.factorypattern.Slide;
-import com.nhlstenden.factorypattern.SlideItem;
-import com.nhlstenden.factorypattern.TextItem;
+import com.nhlstenden.factorypattern.*;
 import org.xml.sax.SAXException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -32,6 +29,7 @@ import org.w3c.dom.NodeList;
  */
 
 public class XMLAccessor extends Accessor {
+	private SlideItemFactory slideItemFactory;
 	
     protected static final String DEFAULT_API_TO_USE = "dom";
     
@@ -103,17 +101,24 @@ public class XMLAccessor extends Accessor {
 			}
 		}
 		String type = attributes.getNamedItem(KIND).getTextContent();
-		if (TEXT.equals(type)) {
-			slide.append(new TextItem(level, item.getTextContent()));
-		}
-		else {
-			if (IMAGE.equals(type)) {
-				slide.append(new BitmapItem(level, item.getTextContent()));
-			}
-			else {
-				System.err.println(UNKNOWNTYPE);
-			}
-		}
+		SlideItemTypes itemTypes = type.equals(TEXT) ? SlideItemTypes.TEXT_ITEM : SlideItemTypes.BITMAP_ITEM;
+
+		SlideItem slideItem = this.slideItemFactory.createSlideItem(itemTypes, level, item.getTextContent());
+		slide.append(slideItem);
+
+//		if (TEXT.equals(type)) {
+//			slide.append(new TextItem(level, item.getTextContent()));
+//		}
+//		else {
+//			if (IMAGE.equals(type)) {
+//				slide.append(new BitmapItem(level, item.getTextContent()));
+//			}
+//			else {
+//				System.err.println(UNKNOWNTYPE);
+//			}
+//		}
+
+
 	}
 
 	public void saveFile(Presentation presentation, String filename) throws IOException {
