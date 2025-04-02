@@ -28,7 +28,7 @@ class PrevSlideCommandTest {
     }
 
     @Test
-    void execute() {
+    void testExecute() {
         this.presentation.setSlideNumber(3);
         this.prevSlideCommand.execute();
         assertEquals(2, this.presentation.getSlideNumber());

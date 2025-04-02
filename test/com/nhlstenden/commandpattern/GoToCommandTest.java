@@ -28,7 +28,7 @@ class GoToCommandTest {
         this.presentation.append(new Slide());
     }
     @Test
-    void execute() {
+    void testExecute() {
         this.goToCommand.execute();
 
         assertEquals(2, this.receiver.getPresentation().getSlideNumber());

@@ -27,7 +27,7 @@ class NewPageCommandTest {
     }
 
     @Test
-    void execute() {
+    void testExecute() {
         this.newPageCommand.execute();
 
         assertEquals(-1, this.presentation.getSlideNumber());

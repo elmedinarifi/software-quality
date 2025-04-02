@@ -27,10 +27,10 @@ class NextSlideCommandTest {
     }
 
     @Test
-    void execute() {
-        this.presentation.setSlideNumber(0);
+    void testExecute() {
+        this.presentation.setSlideNumber(1);
         this.nextSlideCommand.execute();
 
-        assertEquals(1, this.presentation.getSlideNumber());
+        assertEquals(2, this.presentation.getSlideNumber());
     }
 }

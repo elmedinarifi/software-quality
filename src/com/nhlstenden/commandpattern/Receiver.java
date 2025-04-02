@@ -2,7 +2,6 @@ package com.nhlstenden.commandpattern;
 
 import com.nhlstenden.demo.JabberPoint;
 import com.nhlstenden.demo.Presentation;
-import com.nhlstenden.factorypattern.Slide;
 import com.nhlstenden.demo.XMLAccessor;
 import com.nhlstenden.factorypattern.SlideItemFactory;
 
