@@ -74,7 +74,7 @@
 
     <!-- Build Configuration -->
     <build>
-        <sourceDirectory>src/com/nhlstenden</sourceDirectory>  <!-- Main source directory -->
+        <sourceDirectory>src</sourceDirectory>  <!-- Main source directory -->
         <testSourceDirectory>test</testSourceDirectory>   <!-- Test source directory (root level) -->
 
         <plugins>
