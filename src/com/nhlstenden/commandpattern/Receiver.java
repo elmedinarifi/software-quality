@@ -45,7 +45,7 @@ public class Receiver {
             new XMLAccessor(slideItemFactory).saveFile(this.presentation, filename);
             System.out.println("Bestand is opgeslagen" + filename);
         } catch (IOException exception) {
-            System.err.println("Bestand is niet opgeslagen:" + exception.getMessage());
+            throw new RuntimeException("Fout bij openen van bestand", exception);
         }
     }
 
@@ -79,7 +79,7 @@ public class Receiver {
         if (slideNumber >= 0 && slideNumber < this.presentation.getSize()) {
             this.presentation.setSlideNumber(slideNumber);
         } else {
-            System.out.println("Ongeldig slide nummer: " + slideNumber);
+            throw new IllegalArgumentException("Ongeldig paginanummer");
         }
     }
 

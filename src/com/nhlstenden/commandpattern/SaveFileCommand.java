@@ -12,6 +12,6 @@ public class SaveFileCommand extends Command {
 
     @Override
     public void execute() throws IOException {
-        receiver.saveFileCommand(filename);
+        this.receiver.saveFileCommand(filename);
     }
 }
