@@ -1,7 +1,7 @@
 package com.nhlstenden.commandpattern;
 
-import com.nhlstenden.demo.JabberPoint;
-import com.nhlstenden.demo.Presentation;
+import com.nhlstenden.jabberpoint.JabberPoint;
+import com.nhlstenden.jabberpoint.Presentation;
 import com.nhlstenden.factorypattern.Slide;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -44,16 +44,12 @@ class MenuControllerTest {
 
 
     private void simulateMenuClick(String commandKey) {
-        // Krijg het menu item via de menuController (je hebt al mkMenuItem())
         MenuItem menuItem = menuController.mkMenuItem(commandKey);
 
-        // Verkrijg de listeners van het menu-item
         ActionListener[] listeners = menuItem.getActionListeners();
 
-        // Als er geen listeners zijn, voeg dan handmatig de listener toe
         if (listeners.length == 0) {
             menuItem.addActionListener(e -> {
-                // Stel dat we de bijbehorende actie hier willen simuleren
                 if (NEXT.equals(commandKey)) {
                     receiver.nextSlideCommand();
                 } else if (PREV.equals(commandKey)) {

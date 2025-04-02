@@ -1,12 +1,10 @@
 package com.nhlstenden.commandpattern;
 
-import com.nhlstenden.demo.JabberPoint;
-import com.nhlstenden.demo.Presentation;
+import com.nhlstenden.jabberpoint.JabberPoint;
+import com.nhlstenden.jabberpoint.Presentation;
 import com.nhlstenden.factorypattern.Slide;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 

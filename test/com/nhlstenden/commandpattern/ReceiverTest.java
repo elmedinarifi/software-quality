@@ -1,17 +1,11 @@
 package com.nhlstenden.commandpattern;
 
-import com.nhlstenden.demo.JabberPoint;
-import com.nhlstenden.demo.Presentation;
-import com.nhlstenden.demo.XMLAccessor;
+import com.nhlstenden.jabberpoint.JabberPoint;
+import com.nhlstenden.jabberpoint.Presentation;
+import com.nhlstenden.jabberpoint.XMLAccessor;
 import com.nhlstenden.factorypattern.Slide;
 import com.nhlstenden.factorypattern.SlideItemFactory;
 import org.junit.jupiter.api.BeforeEach;
-
-import javax.swing.*;
-import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 

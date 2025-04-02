@@ -1,4 +1,4 @@
-package com.nhlstenden.demo;
+package com.nhlstenden.jabberpoint;
 
 import com.nhlstenden.factorypattern.Slide;
 import com.nhlstenden.factorypattern.SlideViewerComponent;

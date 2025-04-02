@@ -1,6 +1,6 @@
 package com.nhlstenden.factorypattern;
 
-import com.nhlstenden.demo.Presentation;
+import com.nhlstenden.jabberpoint.Presentation;
 import com.nhlstenden.commandpattern.KeyController;
 import com.nhlstenden.commandpattern.MenuController;
 import com.nhlstenden.commandpattern.Receiver;
@@ -28,13 +28,6 @@ public class SlideViewerFrame extends JFrame {
 	public final static int WIDTH = 1200;
 	public final static int HEIGHT = 800;
 
-//	public SlideViewerFrame(String title, Presentation presentation) {
-//		super(title);
-//		SlideViewerComponent slideViewerComponent = new SlideViewerComponent(presentation, this);
-//		presentation.setShowView(slideViewerComponent);
-//		this.setupWindow(slideViewerComponent, presentation);
-//	}
-
 	public SlideViewerFrame(String title, Receiver receiver) {
 	super(title);
 	Presentation presentation = receiver.getPresentation();
@@ -51,8 +44,8 @@ public class SlideViewerFrame extends JFrame {
 			}
 		});
 		this.getContentPane().add(slideViewerComponent);
-		this.addKeyListener(new KeyController(receiver)); // Nu correct
-		this.setMenuBar(new MenuController(this, receiver)); // Nu correct
+		this.addKeyListener(new KeyController(receiver));
+		this.setMenuBar(new MenuController(this, receiver));
 		this.setSize(new Dimension(WIDTH, HEIGHT));
 		this.setVisible(true);
 	}

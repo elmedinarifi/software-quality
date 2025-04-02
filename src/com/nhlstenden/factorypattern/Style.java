@@ -26,6 +26,13 @@ public class Style {
 	int fontSize;
 	int leading;
 
+	public Style(int indent, Color color, int points, int leading) {
+		this.indent = indent;
+		this.color = color;
+		this.font = new Font(FONTNAME, Font.BOLD, this.fontSize=points);
+		this.leading = leading;
+	}
+
 	public static void createStyles() {
 		styles = new Style[5];    
 		styles[0] = new Style(0, Color.red,   48, 20);	
@@ -39,15 +46,11 @@ public class Style {
 		if (level >= styles.length) {
 			level = styles.length - 1;
 		}
+
 		return styles[level];
 	}
 
-	public Style(int indent, Color color, int points, int leading) {
-		this.indent = indent;
-		this.color = color;
-		this.font = new Font(FONTNAME, Font.BOLD, this.fontSize=points);
-		this.leading = leading;
-	}
+
 
 	public String toString() {
 		return "["+ this.indent + "," + this.color + "; " + this.fontSize + " on " + this.leading +"]";

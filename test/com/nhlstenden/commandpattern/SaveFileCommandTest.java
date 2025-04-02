@@ -1,7 +1,7 @@
 package com.nhlstenden.commandpattern;
 
-import com.nhlstenden.demo.JabberPoint;
-import com.nhlstenden.demo.Presentation;
+import com.nhlstenden.jabberpoint.JabberPoint;
+import com.nhlstenden.jabberpoint.Presentation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

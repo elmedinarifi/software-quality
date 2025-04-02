@@ -1,4 +1,4 @@
-package com.nhlstenden.demo;
+package com.nhlstenden.jabberpoint;
 
 import com.nhlstenden.commandpattern.Receiver;
 import com.nhlstenden.factorypattern.SlideItemFactory;

@@ -1,6 +1,6 @@
 package com.nhlstenden.factorypattern;
 
-import com.nhlstenden.demo.Presentation;
+import com.nhlstenden.jabberpoint.Presentation;
 
 import java.awt.Color;
 import java.awt.Font;

@@ -1,4 +1,4 @@
-package com.nhlstenden.demo;
+package com.nhlstenden.jabberpoint;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,7 +11,7 @@ class AccessorTest {
     void testGetDemoAccessor_ShouldReturnDemoPresentation() {
         Accessor accessor = Accessor.getDemoAccessor();
 
-        assertTrue(accessor instanceof DemoPresentation, "De accessor moet een instance van DemoPresentation zijn");
+        assertTrue(accessor instanceof DemoPresentation);
     }
 
     @Test

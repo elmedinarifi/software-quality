@@ -1,4 +1,4 @@
-package com.nhlstenden.demo;
+package com.nhlstenden.jabberpoint;
 
 import com.nhlstenden.factorypattern.Slide;
 import com.nhlstenden.factorypattern.SlideItemFactory;
@@ -53,7 +53,7 @@ class XMLAccessorTest {
         this.presentation.setTitle("Test Presentation");
         Slide slide = new Slide();
         slide.setTitle("Slide 1");
-        slide.append(new TextItem(1, "This is a text item"));
+        slide.append(new TextItem(1, "Text item"));
         this.presentation.append(slide);
 
         File file = new File("saved_presentation.xml");

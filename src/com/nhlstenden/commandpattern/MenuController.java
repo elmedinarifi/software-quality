@@ -1,7 +1,6 @@
 package com.nhlstenden.commandpattern;
 
-import com.nhlstenden.demo.AboutBox;
-import com.nhlstenden.demo.Presentation;
+import com.nhlstenden.jabberpoint.AboutBox;
 
 import java.awt.*;
 import java.io.IOException;
