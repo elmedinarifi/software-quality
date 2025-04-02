@@ -40,6 +40,16 @@ public class BitmapItem extends SlideItem {
 		}
 	}
 
+	public BufferedImage getBufferedImage()
+	{
+		return this.bufferedImage;
+	}
+
+	public void setBufferedImage(BufferedImage bufferedImage)
+	{
+		this.bufferedImage = bufferedImage;
+	}
+
 	public BitmapItem() {
 		this(0, null);
 	}
