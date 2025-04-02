@@ -52,7 +52,7 @@ public class SlideViewerFrame extends JFrame {
 		});
 		this.getContentPane().add(slideViewerComponent);
 		this.addKeyListener(new KeyController(receiver)); // Nu correct
-		this.setMenuBar(new MenuController(this, new Presentation(), receiver)); // Nu correct
+		this.setMenuBar(new MenuController(this, receiver)); // Nu correct
 		this.setSize(new Dimension(WIDTH, HEIGHT));
 		this.setVisible(true);
 	}

@@ -26,7 +26,7 @@ class OpenFileCommandTest {
     }
 
     @Test
-    void testExecute() {
+    void testExecute_OpenTestFile_ShouldNotThrowException() {
         assertDoesNotThrow(() -> this.openFileCommand.execute());
     }
 }

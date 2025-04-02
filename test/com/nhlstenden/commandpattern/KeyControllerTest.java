@@ -40,11 +40,11 @@ class KeyControllerTest {
                 keyCode,
                 KeyEvent.CHAR_UNDEFINED
         );
-        keyController.keyPressed(keyEvent);
+        this.keyController.keyPressed(keyEvent);
     }
 
     @Test
-    void keyPressedNextSlideFirstCommand() {
+    void keyPressed_NextSlideFirstCommand_ShouldReturn3() {
         this.presentation.setSlideNumber(2);
 
         simulateKeyPress(KeyEvent.VK_PAGE_DOWN);
@@ -52,7 +52,7 @@ class KeyControllerTest {
     }
 
     @Test
-    void keyPressedNextSlideSecondCommand() {
+    void keyPressed_NextSlideSecondCommand_ShouldReturn3() {
         this.presentation.setSlideNumber(2);
 
         simulateKeyPress(KeyEvent.VK_DOWN);
@@ -60,7 +60,7 @@ class KeyControllerTest {
     }
 
     @Test
-    void keyPressedNextSlideThirdCommand() {
+    void keyPressed_NextSlideThirdCommand_ShouldReturn3() {
         this.presentation.setSlideNumber(2);
 
         simulateKeyPress(KeyEvent.VK_ENTER);
@@ -68,7 +68,7 @@ class KeyControllerTest {
     }
 
     @Test
-    void keyPressedNextSlideFourthCommand() {
+    void keyPressed_NextSlideFourthCommand_ShouldReturn3() {
         this.presentation.setSlideNumber(2);
 
         simulateKeyPress((int) '+');
@@ -78,7 +78,7 @@ class KeyControllerTest {
 
 
     @Test
-    void keyPressedPrevSlideFirstCommand() {
+    void keyPressed_PrevSlideFirstCommand_ShouldReturn2() {
         this.presentation.setSlideNumber(3);
 
         simulateKeyPress(KeyEvent.VK_PAGE_UP);
@@ -86,7 +86,7 @@ class KeyControllerTest {
     }
 
     @Test
-    void keyPressedPrevSlideSecondCommand() {
+    void keyPressed_PrevSlideSecondCommand_ShouldReturn2() {
         this.presentation.setSlideNumber(3);
 
         simulateKeyPress(KeyEvent.VK_UP);
@@ -94,14 +94,14 @@ class KeyControllerTest {
     }
 
     @Test
-    void keyPressedPrevSlideThirdCommand() {
+    void keyPressed_PrevSlideThirdCommand_ShouldReturn2() {
         this.presentation.setSlideNumber(3);
         simulateKeyPress((int) '-');
         assertEquals(2, this.presentation.getSlideNumber());
     }
 
     @Test
-    void keyPressedNoCommand() {
+    void keyPressed_NoCommand_ShouldReturn2() {
         this.presentation.setSlideNumber(2);
         simulateKeyPress(KeyEvent.VK_A);
         assertEquals(2, this.presentation.getSlideNumber());

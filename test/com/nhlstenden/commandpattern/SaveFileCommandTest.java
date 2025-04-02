@@ -25,7 +25,7 @@ class SaveFileCommandTest {
     }
 
     @Test
-    void testExecute() {
+    void testExecute_SaveFileCommand_ShouldNotThrow() {
         assertDoesNotThrow(() -> this.saveFileCommand.execute());
     }
 }

@@ -27,7 +27,7 @@ class NextSlideCommandTest {
     }
 
     @Test
-    void testExecute() {
+    void testExecute_NextSlide_ShouldReturn2() {
         this.presentation.setSlideNumber(1);
         this.nextSlideCommand.execute();
 

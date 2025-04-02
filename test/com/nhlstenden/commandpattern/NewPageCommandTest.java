@@ -27,7 +27,7 @@ class NewPageCommandTest {
     }
 
     @Test
-    void testExecute() {
+    void testExecute_NewPage_ShouldStartOnPageNegative1() {
         this.newPageCommand.execute();
 
         assertEquals(-1, this.presentation.getSlideNumber());

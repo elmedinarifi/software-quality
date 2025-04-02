@@ -36,19 +36,19 @@ class ReceiverTest {
     }
 
     @org.junit.jupiter.api.Test
-    void testSaveFileCommand() {
+    void testSaveFileCommand_SaveTestFile_ShouldNotThrowException() {
         String filename = "testfile.xml";
         assertDoesNotThrow(() -> this.receiver.saveFileCommand(filename));
     }
 
     @org.junit.jupiter.api.Test
-    void testOpenFileCommand() {
+    void testOpenFileCommand_OpenTestFile_ShouldNotThrowException() {
         String filename = "testfile.xml";
         assertDoesNotThrow(() -> this.receiver.openFileCommand(filename));
     }
 
     @org.junit.jupiter.api.Test
-    void testGoToCommandFirstPage() {
+    void testGoToCommand_GoToFirstPage_ShouldReturn1() {
 
         this.presentation.setSlideNumber(0);
         this.receiver.goToCommand(1);
@@ -56,59 +56,59 @@ class ReceiverTest {
     }
 
     @org.junit.jupiter.api.Test
-    void testGoToCommandSecondPage() {
+    void testGoToCommand_GoToSecondPage_ShouldReturn2() {
         this.presentation.setSlideNumber(0);
         this.receiver.goToCommand(2);
         assertEquals(2, this.presentation.getSlideNumber());
     }
 
     @org.junit.jupiter.api.Test
-    void testGoToCommandInvalidPageThrowsException () {
+    void testGoToCommand_InvalidPage_ShouldThrowException () {
         this.presentation.setSlideNumber(0);
         assertThrows(IllegalArgumentException.class, () -> {
             this.receiver.goToCommand(500);
         });    }
 
     @org.junit.jupiter.api.Test
-    void testPrevSlideCommand() {
+    void testPrevSlideCommand_GoToPrevSlide_ShouldReturn1() {
         this.presentation.setSlideNumber(2);
         this.receiver.prevSlideCommand();
         assertEquals(1, this.presentation.getSlideNumber());
     }
 
     @org.junit.jupiter.api.Test
-    void testNextSlideCommand() {
+    void testNextSlideCommand_GoToNextSlide_ShouldReturn1() {
         this.presentation.setSlideNumber(0);
         this.receiver.nextSlideCommand();
         assertEquals(1, this.presentation.getSlideNumber());
     }
 
     @org.junit.jupiter.api.Test
-    void testNewPageCommand() {
+    void testNewPageCommand_OpenNewPage_ShouldReturnNegative1() {
         this.presentation.setSlideNumber(2);
         this.receiver.newPageCommand();
         assertEquals(-1, this.presentation.getSlideNumber());
     }
 
     @org.junit.jupiter.api.Test
-    void testGetPresentation() {
+    void testGetPresentation_ShouldReturnPresentation() {
         assertEquals(this.presentation, this.receiver.getPresentation());
     }
 
     @org.junit.jupiter.api.Test
-    void testSetPresentation() {
+    void testSetPresentation_ShouldSetPresentation() {
         Presentation newPresentation = new Presentation();
         this.receiver.setPresentation(newPresentation);
         assertEquals(newPresentation, this.receiver.getPresentation());
     }
 
     @org.junit.jupiter.api.Test
-    void testGetJabberPoint() {
+    void testGetJabberPoint_ShouldGetJabberPoint() {
         assertEquals(this.jabberPoint, this.receiver.getJabberPoint());
     }
 
     @org.junit.jupiter.api.Test
-    void testSetJabberPoint() {
+    void testSetJabberPoint_ShouldSetJabberPoint() {
         JabberPoint newJabberPoint = new JabberPoint();
         this.receiver.setJabberPoint(newJabberPoint);
         assertEquals(newJabberPoint, this.receiver.getJabberPoint());
