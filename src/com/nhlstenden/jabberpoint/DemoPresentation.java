@@ -49,7 +49,7 @@ public class DemoPresentation extends Accessor {
 		slide.append(2, "gebruik File->Open uit het menu.");
 		slide.append(1, " ");
 		slide.append(1, "Dit is het einde van de presentatie.");
-		slide.append(new BitmapItem(1, "../resources/JabberPoint.jpg"));
+		slide.append(new BitmapItem(1, "./resources/JabberPoint.jpg"));
 
 		presentation.append(slide);
 	}

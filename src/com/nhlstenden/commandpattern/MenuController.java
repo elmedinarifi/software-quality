@@ -107,8 +107,6 @@ public class MenuController extends MenuBar {
 				String errorTitle = commandKey.equals(SAVE) ? SAVEERR : LOADERR;
 				JOptionPane.showMessageDialog(parent, errorMessage, errorTitle, JOptionPane.ERROR_MESSAGE);
 			}
-		} else {
-			System.out.println("No command found for menu item: " + commandKey);
 		}
 	}
 
