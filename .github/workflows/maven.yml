@@ -32,6 +32,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
+      - name: Run code-quality
+        run: java -jar code-quality/checkstyle.jar -c code-quality/checkstyle.xml src/
+
   build:
     runs-on: ubuntu-latest
     needs: setup
