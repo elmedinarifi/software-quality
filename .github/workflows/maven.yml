@@ -61,10 +61,10 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
-      - name: Run tests
-        run: mvn test -Djava.awt.headless=true
-
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
           files: target/site/jacoco/jacoco.xml
+
+      - name: Run tests
+        run: mvn test
