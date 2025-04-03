@@ -24,9 +24,9 @@ class SlideItemFactoryTest {
 
     @Test
     void createSlideItem_ShouldReturnBitmapItem() {
-        SlideItem bitmapItem = this.slideItemFactory.createSlideItem(SlideItemTypes.BITMAP_ITEM, 2, "Bitmap Content");
+        SlideItem bitmapItem = this.slideItemFactory.createSlideItem(SlideItemTypes.BITMAP_ITEM, 2, "src/com/nhlstenden/resources/JabberPoint.jpg");
 
         assertTrue(bitmapItem instanceof BitmapItem);
-        assertEquals("Bitmap Content", ((BitmapItem) bitmapItem).getName());
+        assertEquals("src/com/nhlstenden/resources/JabberPoint.jpg", ((BitmapItem) bitmapItem).getName());
     }
 }

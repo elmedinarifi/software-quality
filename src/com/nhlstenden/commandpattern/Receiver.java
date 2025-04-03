@@ -42,7 +42,6 @@ public class Receiver {
         try{
             SlideItemFactory slideItemFactory = new SlideItemFactory();
             new XMLAccessor(slideItemFactory).saveFile(this.presentation, filename);
-            System.out.println("Bestand is opgeslagen" + filename);
         } catch (IOException exception) {
             throw new RuntimeException("Fout bij openen van bestand", exception);
         }
@@ -52,7 +51,6 @@ public class Receiver {
         try {
             SlideItemFactory slideItemFactory = new SlideItemFactory();
             new XMLAccessor(slideItemFactory).loadFile(this.presentation, filename);
-            System.out.println("Bestand geopend: " + filename);
         } catch (IOException exception) {
             System.err.println("Fout bij openen: " + exception.getMessage());
         }

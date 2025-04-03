@@ -51,7 +51,7 @@ class SlideItemTest {
 
     @Test
     void testRender_ShouldRenderBitmapItem() {
-        SlideItem slideItem = new TestBitmapItem(2, "image.png");
+        SlideItem slideItem = new TestBitmapItem(2, "src/com/nhlstenden/resources/JabberPoint.jpg");
 
         BufferedImage image = new BufferedImage(200, 200, BufferedImage.TYPE_INT_ARGB);
         Graphics g = image.getGraphics();
@@ -65,7 +65,7 @@ class SlideItemTest {
 
     @Test
     void testGetBoundingBox_ShouldReturnRectangleForBitmapItem() {
-        SlideItem slideItem = new TestBitmapItem(2, "image.png");
+        SlideItem slideItem = new TestBitmapItem(2, "src/com/nhlstenden/resources/JabberPoint.jpg");
         BufferedImage image = new BufferedImage(200, 200, BufferedImage.TYPE_INT_ARGB);
         Graphics g = image.getGraphics();
 

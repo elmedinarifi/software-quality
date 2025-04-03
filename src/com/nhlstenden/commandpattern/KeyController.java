@@ -33,9 +33,7 @@ public class KeyController extends KeyAdapter {
                 command.execute();
             } catch (IOException exception) {
             }
-        } else {
-			System.out.println("No command found for key: " + keyEvent.getKeyCode());
-		}
+        }
 	}
 }
 
