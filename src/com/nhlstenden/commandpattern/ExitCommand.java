@@ -1,13 +1,16 @@
 package com.nhlstenden.commandpattern;
 
-public class ExitCommand extends Command {
+public class ExitCommand extends Command
+{
 
-    public ExitCommand(Receiver receiver) {
+    public ExitCommand(Receiver receiver)
+    {
         super(receiver);
     }
 
     @Override
-    public void execute() {
+    public void execute()
+    {
         this.receiver.exitCommand();
     }
 }

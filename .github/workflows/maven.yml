@@ -32,6 +32,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
+  formatter:
+    - runs-on: ubuntu-latest
+    - steps:
+      - name: Checkout repository
+      - uses: actions/checkout@v4
+
       - name: Run code-quality
         run: java -jar code-quality/checkstyle-10.23.0-all.jar -c code-quality/checkstyle.xml src/
 

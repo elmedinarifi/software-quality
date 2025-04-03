@@ -1,7 +1,9 @@
 package com.nhlstenden.commandpattern;
 
-public class GoToCommand extends Command {
+public class GoToCommand extends Command
+{
     private int pageNumber;
+
     public GoToCommand(Receiver receiver, int pageNumber)
     {
         super(receiver);
@@ -9,7 +11,8 @@ public class GoToCommand extends Command {
     }
 
     @Override
-    public void execute() {
+    public void execute()
+    {
         this.receiver.goToCommand(this.pageNumber);
     }
 }

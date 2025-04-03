@@ -2,7 +2,8 @@ package com.nhlstenden.commandpattern;
 
 import java.io.IOException;
 
-public abstract class Command {
+public abstract class Command
+{
     protected Receiver receiver;
 
     public Command(Receiver receiver)
