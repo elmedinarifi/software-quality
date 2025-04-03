@@ -32,8 +32,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-  formatter:
-    - steps:
+    formatter:
+      runs-on: ubuntu-latest
+      steps:
         - name: Checkout repository
         - uses: actions/checkout@v4
 
