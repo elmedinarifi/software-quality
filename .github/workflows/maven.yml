@@ -23,7 +23,6 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
-          cache: maven
 
       - name: Cache Maven dependencies
         uses: actions/cache@v3
@@ -63,7 +62,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Run tests
-        run: mvn test
+        run: mvn test -Djava.awt.headless=true
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
