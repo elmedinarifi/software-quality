@@ -13,7 +13,7 @@ import com.nhlstenden.jabberpoint.io.XMLPresentationIO;
 
 /**
  * Main application class demonstrating SOLID principles integration.
- * 
+ * <p>
  * SOLID Principles Applied:
  * - Single Responsibility Principle: Coordinates components but delegates specific responsibilities
  * - Open/Closed Principle: New functionality can be added through new implementations of interfaces
@@ -62,7 +62,7 @@ public class JabberPoint
         {
             // Create the main window first
             new SlideViewerFrame("Jabberpoint 1.6 - OU", receiver);
-            
+
             if (argv.length == 0)
             {
                 loadDemoPresentation();
