@@ -50,7 +50,9 @@ jobs:
           distribution: 'temurin'
 
       - name: Build with Maven
-        run: mvn -B package --file pom.xml
+        run: |
+          mvn -B package --file pom.xml
+          echo "JAR_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
@@ -74,10 +76,11 @@ jobs:
       - name: Run tests and generate coverage
         run: mvn test jacoco:report
 
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
         with:
-          files: target/site/jacoco/jacoco.xml
+          name: jacoco-report
+          path: target/site/jacoco/
 
   release:
     runs-on: ubuntu-latest
@@ -96,5 +99,6 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: artifacts/software-quality-*.jar
+          fail_on_unmatched_files: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
