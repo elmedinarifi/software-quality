@@ -4,7 +4,7 @@
 
     <!-- Basic Project Information -->
     <groupId>com.darwinsys</groupId>
-    <artifactId>software-quality</artifactId>
+    <artifactId>jabberpoint</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
     <inceptionYear>2007</inceptionYear>
