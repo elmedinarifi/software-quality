@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.nhlstenden.factorypattern.SlideItemTest" time="0.031" tests="4" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.nhlstenden.factorypattern.SlideItemTest" time="0.029" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="23"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -13,7 +13,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="/opt/homebrew/Cellar/openjdk/23.0.2/libexec/openjdk.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/elmedin/Developer/SoftwareQuality/software-quality/target/surefire/surefirebooter10925104993430695658.jar /Users/elmedin/Developer/SoftwareQuality/software-quality/target/surefire 2025-04-04T11-22-20_043-jvmRun1 surefire11536321190647322936tmp surefire_016079721630426157379tmp"/>
+    <property name="sun.java.command" value="/Users/elmedin/Developer/SoftwareQuality/software-quality/target/surefire/surefirebooter15079941915650484818.jar /Users/elmedin/Developer/SoftwareQuality/software-quality/target/surefire 2025-04-04T20-30-07_219-jvmRun1 surefire1042021827742914915tmp surefire_06892534289452997090tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/elmedin/Developer/SoftwareQuality/software-quality/target/test-classes:/Users/elmedin/Developer/SoftwareQuality/software-quality/target/classes:/Users/elmedin/.m2/repository/org/jdom/jdom/1.1/jdom-1.1.jar:/Users/elmedin/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.7.2/junit-jupiter-api-5.7.2.jar:/Users/elmedin/.m2/repository/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar:/Users/elmedin/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/Users/elmedin/.m2/repository/org/junit/platform/junit-platform-commons/1.7.2/junit-platform-commons-1.7.2.jar:/Users/elmedin/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.7.2/junit-jupiter-engine-5.7.2.jar:/Users/elmedin/.m2/repository/org/junit/platform/junit-platform-engine/1.7.2/junit-platform-engine-1.7.2.jar:/Users/elmedin/.m2/repository/org/junit/jupiter/junit-jupiter/5.13.0-M2/junit-jupiter-5.13.0-M2.jar:/Users/elmedin/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.13.0-M2/junit-jupiter-params-5.13.0-M2.jar:"/>
@@ -30,7 +30,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="apple.awt.application.name" value="ForkedBooter"/>
-    <property name="surefire.real.class.path" value="/Users/elmedin/Developer/SoftwareQuality/software-quality/target/surefire/surefirebooter10925104993430695658.jar"/>
+    <property name="surefire.real.class.path" value="/Users/elmedin/Developer/SoftwareQuality/software-quality/target/surefire/surefirebooter15079941915650484818.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="23.0.2"/>
@@ -59,8 +59,8 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="67.0"/>
   </properties>
-  <testcase name="testRender_ShouldRenderTextItem" classname="com.nhlstenden.factorypattern.SlideItemTest" time="0.005"/>
-  <testcase name="testRender_ShouldRenderBitmapItem" classname="com.nhlstenden.factorypattern.SlideItemTest" time="0.019"/>
+  <testcase name="testRender_ShouldRenderTextItem" classname="com.nhlstenden.factorypattern.SlideItemTest" time="0.003"/>
+  <testcase name="testRender_ShouldRenderBitmapItem" classname="com.nhlstenden.factorypattern.SlideItemTest" time="0.02"/>
   <testcase name="testGetBoundingBox_ShouldReturnRectangleForBitmapItem" classname="com.nhlstenden.factorypattern.SlideItemTest" time="0.004"/>
-  <testcase name="testGetBoundingBox_ShouldReturnRectangleForTextItem" classname="com.nhlstenden.factorypattern.SlideItemTest" time="0"/>
+  <testcase name="testGetBoundingBox_ShouldReturnRectangleForTextItem" classname="com.nhlstenden.factorypattern.SlideItemTest" time="0.001"/>
 </testsuite>
