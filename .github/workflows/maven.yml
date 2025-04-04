@@ -91,11 +91,15 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build, test]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
+      packages: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Get latest tag
         id: get_latest_tag
@@ -107,6 +111,7 @@ jobs:
             latest_tag="v1.7.0"
           fi
           echo "latest_tag=$latest_tag" >> $GITHUB_OUTPUT
+          echo "Found latest tag: $latest_tag"
 
       - name: Generate new version
         id: generate_version
@@ -124,11 +129,19 @@ jobs:
             new_version="v$major.$minor.$new_patch"
           fi
           echo "new_version=$new_version" >> $GITHUB_OUTPUT
+          echo "Generated new version: $new_version"
 
       - name: Download JAR artifact
         uses: actions/download-artifact@v4
         with:
           name: jabberpoint-jar
+
+      - name: Verify JAR file
+        run: |
+          echo "Current directory contents:"
+          ls -la
+          echo "JAR file details:"
+          file JabberPoint.jar || true
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
