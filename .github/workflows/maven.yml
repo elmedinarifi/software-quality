@@ -50,8 +50,13 @@ jobs:
       - name: Build with Maven
         run: mvn -B package --file pom.xml
 
+      - name: List target directory
+        run: ls -la target/
+
       - name: Rename JAR
-        run: cp target/software-quality-*.jar JabberPoint.jar
+        run: |
+          cp target/software-quality-1.0.0.jar JabberPoint.jar
+          ls -la JabberPoint.jar
 
       - name: Upload JAR artifact
         uses: actions/upload-artifact@v4
