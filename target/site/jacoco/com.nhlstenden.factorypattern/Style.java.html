@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Style.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jabberpoint</a> &gt; <a href="index.source.html" class="el_package">com.nhlstenden.factorypattern</a> &gt; <span class="el_source">Style.java</span></div><h1>Style.java</h1><pre class="source lang-java linenums">package com.nhlstenden.factorypattern;
+
+import java.awt.*;
+
+/**
+ * &lt;p&gt;com.nhlstenden.factorypattern.Style staat voor Indent, Color, Font and Leading.&lt;/p&gt;
+ * &lt;p&gt;De koppeling tussen style-nummer en item-level is nu direct:
+ * in com.nhlstenden.factorypattern.Slide wordt de style opgehaald voor een item
+ * met als style-nummer het item-level.&lt;/p&gt;
+ *
+ * @author Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
+ * @version 1.6 2014/05/16 Sylvia Stuurman
+ */
+
+public class Style
+{
+    static Style[] styles;
+
+    private static final String FONTNAME = &quot;Helvetica&quot;;
+    int indent;
+    Color color;
+    Font font;
+    int fontSize;
+    int leading;
+
+    public Style(int indent, Color color, int points, int leading)
+<span class="fc" id="L27">    {</span>
+<span class="fc" id="L28">        this.indent = indent;</span>
+<span class="fc" id="L29">        this.color = color;</span>
+<span class="fc" id="L30">        this.font = new Font(FONTNAME, Font.BOLD, this.fontSize = points);</span>
+<span class="fc" id="L31">        this.leading = leading;</span>
+<span class="fc" id="L32">    }</span>
+
+    public static void createStyles()
+    {
+<span class="fc" id="L36">        styles = new Style[5];</span>
+<span class="fc" id="L37">        styles[0] = new Style(0, Color.red, 48, 20);</span>
+<span class="fc" id="L38">        styles[1] = new Style(20, Color.blue, 40, 10);</span>
+<span class="fc" id="L39">        styles[2] = new Style(50, Color.black, 36, 10);</span>
+<span class="fc" id="L40">        styles[3] = new Style(70, Color.black, 30, 10);</span>
+<span class="fc" id="L41">        styles[4] = new Style(90, Color.black, 24, 10);</span>
+<span class="fc" id="L42">    }</span>
+
+    public static Style getStyle(int level)
+    {
+<span class="pc bpc" id="L46" title="1 of 2 branches missed.">        if (level &gt;= styles.length)</span>
+        {
+<span class="nc" id="L48">            level = styles.length - 1;</span>
+        }
+
+<span class="fc" id="L51">        return styles[level];</span>
+    }
+
+    public String toString()
+    {
+<span class="nc" id="L56">        return &quot;[&quot; + this.indent + &quot;,&quot; + this.color + &quot;; &quot; + this.fontSize + &quot; on &quot; + this.leading + &quot;]&quot;;</span>
+    }
+
+    public Font getFont(float scale)
+    {
+<span class="fc" id="L61">        return this.font.deriveFont(this.fontSize * scale);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

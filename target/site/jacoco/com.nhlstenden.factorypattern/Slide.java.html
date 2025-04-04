@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Slide.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jabberpoint</a> &gt; <a href="index.source.html" class="el_package">com.nhlstenden.factorypattern</a> &gt; <span class="el_source">Slide.java</span></div><h1>Slide.java</h1><pre class="source lang-java linenums">package com.nhlstenden.factorypattern;
+
+import java.awt.*;
+import java.awt.image.ImageObserver;
+import java.util.Vector;
+
+/**
+ * &lt;p&gt;Een slide. Deze klasse heeft tekenfunctionaliteit.&lt;/p&gt;
+ *
+ * @author Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
+ * @version 1.6 2014/05/16 Sylvia Stuurman
+ */
+
+public class Slide
+{
+    public final static int WIDTH = 1200;
+    public final static int HEIGHT = 800;
+    protected String title;
+    protected Vector&lt;SlideItem&gt; items;
+
+    public Slide()
+<span class="fc" id="L22">    {</span>
+<span class="fc" id="L23">        this.items = new Vector&lt;SlideItem&gt;();</span>
+<span class="fc" id="L24">    }</span>
+
+    public void append(SlideItem anItem)
+    {
+<span class="fc" id="L28">        this.items.addElement(anItem);</span>
+<span class="fc" id="L29">    }</span>
+
+    public String getTitle()
+    {
+<span class="fc" id="L33">        return this.title;</span>
+    }
+
+    public void setTitle(String newTitle)
+    {
+<span class="fc" id="L38">        this.title = newTitle;</span>
+<span class="fc" id="L39">    }</span>
+
+    public void append(int level, String message)
+    {
+<span class="fc" id="L43">        SlideItemFactory factory = new SlideItemFactory();</span>
+<span class="fc" id="L44">        SlideItem item = factory.createSlideItem(SlideItemTypes.TEXT_ITEM, level, message);</span>
+<span class="fc" id="L45">        this.append(item);</span>
+<span class="fc" id="L46">    }</span>
+
+    public SlideItem getSlideItem(int number)
+    {
+<span class="nc" id="L50">        return (SlideItem) this.items.elementAt(number);</span>
+    }
+
+    public Vector&lt;SlideItem&gt; getSlideItems()
+    {
+<span class="fc" id="L55">        return this.items;</span>
+    }
+
+    public int getSize()
+    {
+<span class="fc" id="L60">        return this.items.size();</span>
+    }
+
+    public void draw(Graphics g, Rectangle area, ImageObserver view)
+    {
+<span class="fc" id="L65">        float scale = this.getScale(area);</span>
+<span class="fc" id="L66">        int y = area.y;</span>
+<span class="fc" id="L67">        SlideItemFactory factory = new SlideItemFactory();</span>
+<span class="fc" id="L68">        SlideItem slideItem = factory.createSlideItem(SlideItemTypes.TEXT_ITEM, 0, this.getTitle());</span>
+<span class="fc" id="L69">        Style style = Style.getStyle(slideItem.getLevel());</span>
+<span class="fc" id="L70">        slideItem.draw(area.x, y, scale, g, style, view);</span>
+<span class="fc" id="L71">        y += slideItem.getBoundingBox(g, view, scale, style).height;</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">        for (int number = 0; number &lt; this.getSize(); number++)</span>
+        {
+<span class="fc" id="L74">            slideItem = (SlideItem) this.getSlideItems().elementAt(number);</span>
+<span class="fc" id="L75">            style = Style.getStyle(slideItem.getLevel());</span>
+<span class="fc" id="L76">            slideItem.draw(area.x, y, scale, g, style, view);</span>
+<span class="fc" id="L77">            y += slideItem.getBoundingBox(g, view, scale, style).height;</span>
+        }
+<span class="fc" id="L79">    }</span>
+
+    private float getScale(Rectangle area)
+    {
+<span class="fc" id="L83">        return Math.min(((float) area.width) / ((float) WIDTH), ((float) area.height) / ((float) HEIGHT));</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

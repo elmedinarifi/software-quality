@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>XMLAccessor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jabberpoint</a> &gt; <a href="index.source.html" class="el_package">com.nhlstenden.jabberpoint</a> &gt; <span class="el_source">XMLAccessor.java</span></div><h1>XMLAccessor.java</h1><pre class="source lang-java linenums">package com.nhlstenden.jabberpoint;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Vector;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+import com.nhlstenden.factorypattern.BitmapItem;
+import com.nhlstenden.factorypattern.Slide;
+import com.nhlstenden.factorypattern.SlideItem;
+import com.nhlstenden.factorypattern.SlideItemFactory;
+import com.nhlstenden.factorypattern.SlideItemTypes;
+import com.nhlstenden.factorypattern.TextItem;
+
+/**
+ * com.nhlstenden.demo.XMLAccessor, reads and writes XML files
+ *
+ * @author Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
+ * @version 1.6 2014/05/16 Sylvia Stuurman
+ */
+
+public class XMLAccessor extends Accessor
+{
+    private SlideItemFactory slideItemFactory;
+
+    public XMLAccessor(SlideItemFactory slideItemFactory)
+<span class="fc" id="L38">    {</span>
+<span class="fc" id="L39">        this.slideItemFactory = slideItemFactory;</span>
+<span class="fc" id="L40">    }</span>
+
+    protected static final String DEFAULT_API_TO_USE = &quot;dom&quot;;
+
+    protected static final String SHOWTITLE = &quot;showtitle&quot;;
+    protected static final String SLIDETITLE = &quot;title&quot;;
+    protected static final String SLIDE = &quot;slide&quot;;
+    protected static final String ITEM = &quot;item&quot;;
+    protected static final String LEVEL = &quot;level&quot;;
+    protected static final String KIND = &quot;kind&quot;;
+    protected static final String TEXT = &quot;text&quot;;
+    protected static final String IMAGE = &quot;image&quot;;
+
+    protected static final String PCE = &quot;Parser Configuration Exception&quot;;
+    protected static final String UNKNOWNTYPE = &quot;Unknown Element type&quot;;
+    protected static final String NFE = &quot;Number Format Exception&quot;;
+
+    private String getTitle(Element element, String tagName)
+    {
+<span class="fc" id="L59">        NodeList titles = element.getElementsByTagName(tagName);</span>
+
+<span class="fc" id="L61">        return titles.item(0).getTextContent();</span>
+    }
+
+    public void loadFile(Presentation presentation, String filename) throws IOException
+    {
+<span class="fc" id="L66">        int slideNumber, itemNumber, max = 0, maxItems = 0;</span>
+        try
+        {
+<span class="fc" id="L69">            DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();</span>
+<span class="fc" id="L70">            Document document = builder.parse(new File(filename));</span>
+<span class="fc" id="L71">            Element doc = document.getDocumentElement();</span>
+<span class="fc" id="L72">            presentation.setTitle(this.getTitle(doc, SHOWTITLE));</span>
+
+<span class="fc" id="L74">            NodeList slides = doc.getElementsByTagName(SLIDE);</span>
+<span class="fc" id="L75">            max = slides.getLength();</span>
+<span class="fc bfc" id="L76" title="All 2 branches covered.">            for (slideNumber = 0; slideNumber &lt; max; slideNumber++)</span>
+            {
+<span class="fc" id="L78">                Element xmlSlide = (Element) slides.item(slideNumber);</span>
+<span class="fc" id="L79">                Slide slide = new Slide();</span>
+<span class="fc" id="L80">                slide.setTitle(this.getTitle(xmlSlide, SLIDETITLE));</span>
+<span class="fc" id="L81">                presentation.append(slide);</span>
+
+<span class="fc" id="L83">                NodeList slideItems = xmlSlide.getElementsByTagName(ITEM);</span>
+<span class="fc" id="L84">                maxItems = slideItems.getLength();</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">                for (itemNumber = 0; itemNumber &lt; maxItems; itemNumber++)</span>
+                {
+<span class="fc" id="L87">                    Element item = (Element) slideItems.item(itemNumber);</span>
+<span class="fc" id="L88">                    this.loadSlideItem(slide, item);</span>
+                }
+            }
+        }
+<span class="nc" id="L92">        catch (IOException iox)</span>
+        {
+<span class="nc" id="L94">            System.err.println(iox.toString());</span>
+        }
+<span class="nc" id="L96">        catch (SAXException sax)</span>
+        {
+<span class="nc" id="L98">            System.err.println(sax.getMessage());</span>
+        }
+<span class="nc" id="L100">        catch (ParserConfigurationException pcx)</span>
+        {
+<span class="nc" id="L102">            System.err.println(PCE);</span>
+<span class="pc" id="L103">        }</span>
+<span class="fc" id="L104">    }</span>
+
+    protected void loadSlideItem(Slide slide, Element item)
+    {
+<span class="fc" id="L108">        int level = 1;</span>
+<span class="fc" id="L109">        NamedNodeMap attributes = item.getAttributes();</span>
+<span class="fc" id="L110">        String leveltext = attributes.getNamedItem(LEVEL).getTextContent();</span>
+<span class="pc bpc" id="L111" title="1 of 2 branches missed.">        if (leveltext != null)</span>
+        {
+            try
+            {
+<span class="fc" id="L115">                level = Integer.parseInt(leveltext);</span>
+            }
+<span class="nc" id="L117">            catch (NumberFormatException x)</span>
+            {
+<span class="nc" id="L119">                System.err.println(NFE);</span>
+<span class="fc" id="L120">            }</span>
+        }
+<span class="fc" id="L122">        String type = attributes.getNamedItem(KIND).getTextContent();</span>
+<span class="pc bpc" id="L123" title="1 of 2 branches missed.">        SlideItemTypes itemTypes = type.equals(TEXT) ? SlideItemTypes.TEXT_ITEM : SlideItemTypes.BITMAP_ITEM;</span>
+
+<span class="fc" id="L125">        SlideItem slideItem = this.slideItemFactory.createSlideItem(itemTypes, level, item.getTextContent());</span>
+<span class="fc" id="L126">        slide.append(slideItem);</span>
+<span class="fc" id="L127">    }</span>
+
+    public void saveFile(Presentation presentation, String filename) throws IOException
+    {
+<span class="fc" id="L131">        PrintWriter out = new PrintWriter(new FileWriter(filename));</span>
+<span class="fc" id="L132">        out.println(&quot;&lt;?xml version=\&quot;1.0\&quot;?&gt;&quot;);</span>
+<span class="fc" id="L133">        out.println(&quot;&lt;!DOCTYPE presentation SYSTEM \&quot;jabberpoint.dtd\&quot;&gt;&quot;);</span>
+<span class="fc" id="L134">        out.println(&quot;&lt;presentation&gt;&quot;);</span>
+<span class="fc" id="L135">        out.print(&quot;&lt;showtitle&gt;&quot;);</span>
+<span class="fc" id="L136">        out.print(presentation.getTitle());</span>
+<span class="fc" id="L137">        out.println(&quot;&lt;/showtitle&gt;&quot;);</span>
+<span class="fc bfc" id="L138" title="All 2 branches covered.">        for (int slideNumber = 0; slideNumber &lt; presentation.getSize(); slideNumber++)</span>
+        {
+<span class="fc" id="L140">            Slide slide = presentation.getSlide(slideNumber);</span>
+<span class="fc" id="L141">            out.println(&quot;&lt;slide&gt;&quot;);</span>
+<span class="fc" id="L142">            out.println(&quot;&lt;title&gt;&quot; + slide.getTitle() + &quot;&lt;/title&gt;&quot;);</span>
+<span class="fc" id="L143">            Vector&lt;SlideItem&gt; slideItems = slide.getSlideItems();</span>
+<span class="fc bfc" id="L144" title="All 2 branches covered.">            for (int itemNumber = 0; itemNumber &lt; slideItems.size(); itemNumber++)</span>
+            {
+<span class="fc" id="L146">                SlideItem slideItem = (SlideItem) slideItems.elementAt(itemNumber);</span>
+<span class="fc" id="L147">                out.print(&quot;&lt;item kind=&quot;);</span>
+<span class="pc bpc" id="L148" title="1 of 2 branches missed.">                if (slideItem instanceof TextItem)</span>
+                {
+<span class="fc" id="L150">                    out.print(&quot;\&quot;text\&quot; level=\&quot;&quot; + slideItem.getLevel() + &quot;\&quot;&gt;&quot;);</span>
+<span class="fc" id="L151">                    out.print(((TextItem) slideItem).getText());</span>
+                }
+                else
+                {
+<span class="nc bnc" id="L155" title="All 2 branches missed.">                    if (slideItem instanceof BitmapItem)</span>
+                    {
+<span class="nc" id="L157">                        out.print(&quot;\&quot;image\&quot; level=\&quot;&quot; + slideItem.getLevel() + &quot;\&quot;&gt;&quot;);</span>
+<span class="nc" id="L158">                        out.print(((BitmapItem) slideItem).getName());</span>
+                    }
+                    else
+                    {
+<span class="nc" id="L162">                        System.out.println(&quot;Ignoring &quot; + slideItem);</span>
+                    }
+                }
+<span class="fc" id="L165">                out.println(&quot;&lt;/item&gt;&quot;);</span>
+            }
+<span class="fc" id="L167">            out.println(&quot;&lt;/slide&gt;&quot;);</span>
+        }
+<span class="fc" id="L169">        out.println(&quot;&lt;/presentation&gt;&quot;);</span>
+<span class="fc" id="L170">        out.close();</span>
+<span class="fc" id="L171">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JabberPoint.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jabberpoint</a> &gt; <a href="index.source.html" class="el_package">com.nhlstenden.jabberpoint</a> &gt; <span class="el_source">JabberPoint.java</span></div><h1>JabberPoint.java</h1><pre class="source lang-java linenums">package com.nhlstenden.jabberpoint;
+
+import javax.swing.JOptionPane;
+
+import com.nhlstenden.commandpattern.Receiver;
+import com.nhlstenden.factorypattern.SlideViewerFrame;
+import com.nhlstenden.factorypattern.Style;
+import com.nhlstenden.factorypattern.core.SlideItemRegistry;
+import com.nhlstenden.factorypattern.creators.BitmapItemCreator;
+import com.nhlstenden.factorypattern.creators.TextItemCreator;
+import com.nhlstenden.jabberpoint.core.DefaultPresentationData;
+import com.nhlstenden.jabberpoint.io.XMLPresentationIO;
+
+/**
+ * Main application class demonstrating SOLID principles integration.
+ * &lt;p&gt;
+ * SOLID Principles Applied:
+ * - Single Responsibility Principle: Coordinates components but delegates specific responsibilities
+ * - Open/Closed Principle: New functionality can be added through new implementations of interfaces
+ * - Liskov Substitution Principle: Uses interfaces instead of concrete classes
+ * - Interface Segregation Principle: Depends on specific interfaces for specific needs
+ * - Dependency Inversion Principle: Dependencies are injected and based on abstractions
+ */
+public class JabberPoint
+{
+    private final DefaultPresentationData presentationData;
+    private final SlideItemRegistry itemRegistry;
+    private final XMLPresentationIO presentationIO;
+    private Receiver receiver;
+
+    public JabberPoint()
+<span class="fc" id="L32">    {</span>
+<span class="fc" id="L33">        Style.createStyles();  // Initialize styles</span>
+<span class="fc" id="L34">        this.presentationData = new DefaultPresentationData();</span>
+<span class="fc" id="L35">        this.itemRegistry = createSlideItemRegistry();</span>
+<span class="fc" id="L36">        this.presentationIO = new XMLPresentationIO(itemRegistry);</span>
+<span class="fc" id="L37">        this.receiver = new Receiver(presentationData, this);</span>
+<span class="fc" id="L38">    }</span>
+
+    /**
+     * Creates and configures the SlideItemRegistry.
+     * Demonstrates Open/Closed Principle: New creators can be added without modification
+     */
+    private SlideItemRegistry createSlideItemRegistry()
+    {
+<span class="fc" id="L46">        SlideItemRegistry registry = new SlideItemRegistry();</span>
+<span class="fc" id="L47">        registry.registerCreator(new TextItemCreator());</span>
+<span class="fc" id="L48">        registry.registerCreator(new BitmapItemCreator());</span>
+
+<span class="fc" id="L50">        return registry;</span>
+    }
+
+    public static void main(String argv[])
+    {
+<span class="nc" id="L55">        JabberPoint jabberPoint = new JabberPoint();</span>
+<span class="nc" id="L56">        jabberPoint.start(argv);</span>
+<span class="nc" id="L57">    }</span>
+
+    private void start(String[] argv)
+    {
+        try
+        {
+            // Create the main window first
+<span class="nc" id="L64">            new SlideViewerFrame(&quot;Jabberpoint 1.6 - OU&quot;, receiver);</span>
+
+<span class="nc bnc" id="L66" title="All 2 branches missed.">            if (argv.length == 0)</span>
+            {
+<span class="nc" id="L68">                loadDemoPresentation();</span>
+            }
+            else
+            {
+<span class="nc" id="L72">                presentationIO.loadPresentation(presentationData, argv[0]);</span>
+            }
+<span class="nc" id="L74">            showPresentation();</span>
+        }
+<span class="nc" id="L76">        catch (Exception e)</span>
+        {
+<span class="nc" id="L78">            handleError(e);</span>
+<span class="nc" id="L79">        }</span>
+<span class="nc" id="L80">    }</span>
+
+    private void loadDemoPresentation()
+    {
+        try
+        {
+            // Use the DemoPresentation class to load the demo
+<span class="nc" id="L87">            DemoPresentation demoPresentation = new DemoPresentation();</span>
+<span class="nc" id="L88">            demoPresentation.loadFile(presentationData, &quot;&quot;);</span>
+        }
+<span class="nc" id="L90">        catch (Exception e)</span>
+        {
+<span class="nc" id="L92">            handleError(e);</span>
+<span class="nc" id="L93">        }</span>
+<span class="nc" id="L94">    }</span>
+
+    private void showPresentation()
+    {
+        // Set the initial slide
+<span class="nc" id="L99">        presentationData.setSlideNumber(0);</span>
+<span class="nc" id="L100">    }</span>
+
+    private void handleError(Exception e)
+    {
+<span class="nc" id="L104">        JOptionPane.showMessageDialog(null,</span>
+<span class="nc" id="L105">            &quot;Error: &quot; + e.getMessage(),</span>
+            &quot;Jabberpoint Error&quot;,
+            JOptionPane.ERROR_MESSAGE);
+<span class="nc" id="L108">    }</span>
+
+    public Presentation getPresentation()
+    {
+<span class="nc" id="L112">        return presentationData;</span>
+    }
+
+    public Receiver getReceiver()
+    {
+<span class="nc" id="L117">        return receiver;</span>
+    }
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

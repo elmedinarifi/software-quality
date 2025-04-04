@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DefaultPresentationData.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jabberpoint</a> &gt; <a href="index.source.html" class="el_package">com.nhlstenden.jabberpoint.core</a> &gt; <span class="el_source">DefaultPresentationData.java</span></div><h1>DefaultPresentationData.java</h1><pre class="source lang-java linenums">package com.nhlstenden.jabberpoint.core;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.nhlstenden.factorypattern.Slide;
+import com.nhlstenden.factorypattern.SlideViewerComponent;
+import com.nhlstenden.jabberpoint.Presentation;
+
+/**
+ * Default implementation of PresentationData that extends the original Presentation class.
+ * &lt;p&gt;
+ * SOLID Principles Applied:
+ * - Single Responsibility Principle: Handles only presentation data management
+ * - Liskov Substitution Principle: Properly implements all Presentation methods
+ * - Open/Closed Principle: Can be extended for different data management strategies
+ */
+public class DefaultPresentationData extends Presentation implements PresentationData
+{
+
+    public DefaultPresentationData()
+    {
+<span class="fc" id="L23">        super();</span>
+<span class="fc" id="L24">    }</span>
+
+    public DefaultPresentationData(SlideViewerComponent slideViewerComponent)
+    {
+<span class="nc" id="L28">        super(slideViewerComponent);</span>
+<span class="nc" id="L29">    }</span>
+
+    @Override
+    public void setCurrentSlideNumber(int number)
+    {
+<span class="fc" id="L34">        this.setSlideNumber(number);</span>
+<span class="fc" id="L35">    }</span>
+
+    @Override
+    public int getCurrentSlideNumber()
+    {
+<span class="fc" id="L40">        return this.getSlideNumber();</span>
+    }
+
+    @Override
+    public List&lt;Slide&gt; getSlides()
+    {
+<span class="fc" id="L46">        List&lt;Slide&gt; slides = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        for (int i = 0; i &lt; getSize(); i++)</span>
+        {
+<span class="fc" id="L49">            slides.add(getSlide(i));</span>
+        }
+
+<span class="fc" id="L52">        return slides;</span>
+    }
+
+    @Override
+    public void addSlide(Slide slide)
+    {
+<span class="fc" id="L58">        this.append(slide);</span>
+<span class="fc" id="L59">    }</span>
+
+    @Override
+    public void removeSlide(int index)
+    {
+<span class="pc bpc" id="L64" title="2 of 4 branches missed.">        if (index &gt;= 0 &amp;&amp; index &lt; this.getSize())</span>
+        {
+            // We need to handle this differently since we can't access showList directly
+<span class="fc" id="L67">            List&lt;Slide&gt; currentSlides = getSlides();</span>
+<span class="fc" id="L68">            this.clear();</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">            for (int i = 0; i &lt; currentSlides.size(); i++)</span>
+            {
+<span class="fc bfc" id="L71" title="All 2 branches covered.">                if (i != index)</span>
+                {
+<span class="fc" id="L73">                    this.append(currentSlides.get(i));</span>
+                }
+            }
+<span class="pc bpc" id="L76" title="1 of 2 branches missed.">            if (this.getCurrentSlideNumber() &gt;= this.getSize())</span>
+            {
+<span class="nc" id="L78">                this.setCurrentSlideNumber(this.getSize() - 1);</span>
+            }
+        }
+<span class="fc" id="L81">    }</span>
+
+    @Override
+    public String getTitle()
+    {
+<span class="fc" id="L86">        return super.getTitle();</span>
+    }
+
+    @Override
+    public void setTitle(String title)
+    {
+<span class="fc" id="L92">        super.setTitle(title);</span>
+<span class="fc" id="L93">    }</span>
+
+    @Override
+    public Slide getCurrentSlide()
+    {
+<span class="fc" id="L98">        return super.getCurrentSlide();</span>
+    }
+
+    @Override
+    public void clear()
+    {
+<span class="fc" id="L104">        super.clear();</span>
+<span class="fc" id="L105">    }</span>
+
+    @Override
+    public int getSize()
+    {
+<span class="fc" id="L110">        return super.getSize();</span>
+    }
+} 
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

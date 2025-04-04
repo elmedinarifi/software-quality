@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Receiver.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jabberpoint</a> &gt; <a href="index.source.html" class="el_package">com.nhlstenden.commandpattern</a> &gt; <span class="el_source">Receiver.java</span></div><h1>Receiver.java</h1><pre class="source lang-java linenums">package com.nhlstenden.commandpattern;
+
+import com.nhlstenden.factorypattern.SlideItemFactory;
+import com.nhlstenden.jabberpoint.JabberPoint;
+import com.nhlstenden.jabberpoint.Presentation;
+import com.nhlstenden.jabberpoint.XMLAccessor;
+
+import java.io.IOException;
+
+public class Receiver
+{
+    private Presentation presentation;
+    private JabberPoint jabberPoint;
+
+    public Receiver(Presentation presentation, JabberPoint jabberPoint)
+<span class="fc" id="L16">    {</span>
+<span class="fc" id="L17">        this.presentation = presentation;</span>
+<span class="fc" id="L18">        this.jabberPoint = jabberPoint;</span>
+<span class="fc" id="L19">    }</span>
+
+    public Presentation getPresentation()
+    {
+<span class="fc" id="L23">        return this.presentation;</span>
+    }
+
+    public void setPresentation(Presentation presentation)
+    {
+<span class="nc" id="L28">        this.presentation = presentation;</span>
+<span class="nc" id="L29">    }</span>
+
+    public JabberPoint getJabberPoint()
+    {
+<span class="nc" id="L33">        return this.jabberPoint;</span>
+    }
+
+    public void setJabberPoint(JabberPoint jabberPoint)
+    {
+<span class="nc" id="L38">        this.jabberPoint = jabberPoint;</span>
+<span class="nc" id="L39">    }</span>
+
+    public void saveFileCommand(String filename) throws IOException
+    {
+        try
+        {
+<span class="fc" id="L45">            SlideItemFactory slideItemFactory = new SlideItemFactory();</span>
+<span class="fc" id="L46">            new XMLAccessor(slideItemFactory).saveFile(this.presentation, filename);</span>
+        }
+<span class="nc" id="L48">        catch (IOException exception)</span>
+        {
+<span class="nc" id="L50">            throw new RuntimeException(&quot;Fout bij openen van bestand&quot;, exception);</span>
+<span class="fc" id="L51">        }</span>
+<span class="fc" id="L52">    }</span>
+
+    public void openFileCommand(String filename)
+    {
+        try
+        {
+<span class="fc" id="L58">            SlideItemFactory slideItemFactory = new SlideItemFactory();</span>
+<span class="fc" id="L59">            new XMLAccessor(slideItemFactory).loadFile(this.presentation, filename);</span>
+        }
+<span class="nc" id="L61">        catch (IOException exception)</span>
+        {
+<span class="nc" id="L63">            System.err.println(&quot;Fout bij openen: &quot; + exception.getMessage());</span>
+<span class="fc" id="L64">        }</span>
+<span class="fc" id="L65">    }</span>
+
+    public void prevSlideCommand()
+    {
+<span class="fc" id="L69">        this.presentation.prevSlide();</span>
+<span class="fc" id="L70">    }</span>
+
+    public void nextSlideCommand()
+    {
+<span class="fc" id="L74">        this.presentation.nextSlide();</span>
+<span class="fc" id="L75">    }</span>
+
+    public void newPageCommand()
+    {
+<span class="fc" id="L79">        this.presentation.clear();</span>
+<span class="fc" id="L80">    }</span>
+
+    public void exitCommand()
+    {
+<span class="nc" id="L84">        System.exit(0);</span>
+<span class="nc" id="L85">    }</span>
+
+    public void goToCommand(int slideNumber)
+    {
+<span class="pc bpc" id="L89" title="2 of 4 branches missed.">        if (slideNumber &gt;= 0 &amp;&amp; slideNumber &lt; this.presentation.getSize())</span>
+        {
+<span class="fc" id="L91">            this.presentation.setSlideNumber(slideNumber);</span>
+        }
+        else
+        {
+<span class="nc" id="L95">            throw new IllegalArgumentException(&quot;Ongeldig paginanummer&quot;);</span>
+        }
+<span class="fc" id="L97">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
