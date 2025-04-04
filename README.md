@@ -113,5 +113,5 @@ Our GitHub Actions workflow includes:
 
 ## Development Team
 
-- Elmedin Arifi
+- Elmedin Arifi!
 - Yunus Karakoc
