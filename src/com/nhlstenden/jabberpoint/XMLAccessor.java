@@ -1,20 +1,27 @@
 package com.nhlstenden.jabberpoint;
 
-import com.nhlstenden.factorypattern.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Vector;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Vector;
+import com.nhlstenden.factorypattern.BitmapItem;
+import com.nhlstenden.factorypattern.Slide;
+import com.nhlstenden.factorypattern.SlideItem;
+import com.nhlstenden.factorypattern.SlideItemFactory;
+import com.nhlstenden.factorypattern.SlideItemTypes;
+import com.nhlstenden.factorypattern.TextItem;
 
 /**
  * com.nhlstenden.demo.XMLAccessor, reads and writes XML files
@@ -50,7 +57,7 @@ public class XMLAccessor extends Accessor
     private String getTitle(Element element, String tagName)
     {
         NodeList titles = element.getElementsByTagName(tagName);
-        
+
         return titles.item(0).getTextContent();
     }
 

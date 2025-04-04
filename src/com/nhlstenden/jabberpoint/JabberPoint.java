@@ -1,69 +1,120 @@
 package com.nhlstenden.jabberpoint;
 
+import javax.swing.JOptionPane;
+
 import com.nhlstenden.commandpattern.Receiver;
-import com.nhlstenden.factorypattern.SlideItemFactory;
 import com.nhlstenden.factorypattern.SlideViewerFrame;
 import com.nhlstenden.factorypattern.Style;
-
-import javax.swing.*;
-import java.io.IOException;
+import com.nhlstenden.factorypattern.core.SlideItemRegistry;
+import com.nhlstenden.factorypattern.creators.BitmapItemCreator;
+import com.nhlstenden.factorypattern.creators.TextItemCreator;
+import com.nhlstenden.jabberpoint.core.DefaultPresentationData;
+import com.nhlstenden.jabberpoint.io.XMLPresentationIO;
 
 /**
- * com.nhlstenden.demo.JabberPoint Main Programma
- * <p>This program is distributed under the terms of the accompanying
- * COPYRIGHT.txt file (which is NOT the GNU General Public License).
- * Please read it. Your use of the software constitutes acceptance
- * of the terms in the COPYRIGHT.txt file.</p>
- *
- * @author Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
- * @version 1.6 2014/05/16 Sylvia Stuurman
+ * Main application class demonstrating SOLID principles integration.
+ * <p>
+ * SOLID Principles Applied:
+ * - Single Responsibility Principle: Coordinates components but delegates specific responsibilities
+ * - Open/Closed Principle: New functionality can be added through new implementations of interfaces
+ * - Liskov Substitution Principle: Uses interfaces instead of concrete classes
+ * - Interface Segregation Principle: Depends on specific interfaces for specific needs
+ * - Dependency Inversion Principle: Dependencies are injected and based on abstractions
  */
 public class JabberPoint
 {
-    private Presentation presentation;
+    private final DefaultPresentationData presentationData;
+    private final SlideItemRegistry itemRegistry;
+    private final XMLPresentationIO presentationIO;
     private Receiver receiver;
 
     public JabberPoint()
     {
-        this.presentation = new Presentation();
-        this.receiver = new Receiver(presentation, this);
+        Style.createStyles();  // Initialize styles
+        this.presentationData = new DefaultPresentationData();
+        this.itemRegistry = createSlideItemRegistry();
+        this.presentationIO = new XMLPresentationIO(itemRegistry);
+        this.receiver = new Receiver(presentationData, this);
+    }
+
+    /**
+     * Creates and configures the SlideItemRegistry.
+     * Demonstrates Open/Closed Principle: New creators can be added without modification
+     */
+    private SlideItemRegistry createSlideItemRegistry()
+    {
+        SlideItemRegistry registry = new SlideItemRegistry();
+        registry.registerCreator(new TextItemCreator());
+        registry.registerCreator(new BitmapItemCreator());
+
+        return registry;
+    }
+
+    public static void main(String argv[])
+    {
+        JabberPoint jabberPoint = new JabberPoint();
+        jabberPoint.start(argv);
+    }
+
+    private void start(String[] argv)
+    {
+        try
+        {
+            // Create the main window first
+            new SlideViewerFrame("Jabberpoint 1.6 - OU", receiver);
+
+            if (argv.length == 0)
+            {
+                loadDemoPresentation();
+            }
+            else
+            {
+                presentationIO.loadPresentation(presentationData, argv[0]);
+            }
+            showPresentation();
+        }
+        catch (Exception e)
+        {
+            handleError(e);
+        }
+    }
+
+    private void loadDemoPresentation()
+    {
+        try
+        {
+            // Use the DemoPresentation class to load the demo
+            DemoPresentation demoPresentation = new DemoPresentation();
+            demoPresentation.loadFile(presentationData, "");
+        }
+        catch (Exception e)
+        {
+            handleError(e);
+        }
+    }
+
+    private void showPresentation()
+    {
+        // Set the initial slide
+        presentationData.setSlideNumber(0);
+    }
+
+    private void handleError(Exception e)
+    {
+        JOptionPane.showMessageDialog(null,
+            "Error: " + e.getMessage(),
+            "Jabberpoint Error",
+            JOptionPane.ERROR_MESSAGE);
     }
 
     public Presentation getPresentation()
     {
-        return presentation;
+        return presentationData;
     }
 
     public Receiver getReceiver()
     {
         return receiver;
-    }
-
-    public static void main(String argv[])
-    {
-        Style.createStyles();
-        JabberPoint jabberpoint = new JabberPoint();
-        Receiver receiver = jabberpoint.getReceiver();
-        new SlideViewerFrame("Jabberpoint 1.6 - OU", receiver);
-
-        try
-        {
-            if (argv.length == 0)
-            {
-                Accessor.getDemoAccessor().loadFile(jabberpoint.getPresentation(), "");
-            }
-            else
-            {
-                SlideItemFactory slideItemFactory = new SlideItemFactory();
-
-                new XMLAccessor(slideItemFactory).loadFile(jabberpoint.getPresentation(), argv[0]);
-            }
-            jabberpoint.getPresentation().setSlideNumber(0);
-        }
-        catch (IOException ex)
-        {
-            JOptionPane.showMessageDialog(null, "IO Error: " + ex, "Jabberpoint Error", JOptionPane.ERROR_MESSAGE);
-        }
     }
 }
 

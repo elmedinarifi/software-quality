@@ -50,7 +50,7 @@ public class Style
 
         return styles[level];
     }
-    
+
     public String toString()
     {
         return "[" + this.indent + "," + this.color + "; " + this.fontSize + " on " + this.leading + "]";

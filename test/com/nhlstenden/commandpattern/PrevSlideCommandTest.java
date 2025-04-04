@@ -1,36 +1,36 @@
 package com.nhlstenden.commandpattern;
 
-import com.nhlstenden.jabberpoint.JabberPoint;
-import com.nhlstenden.jabberpoint.Presentation;
-import com.nhlstenden.factorypattern.Slide;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import com.nhlstenden.factorypattern.Slide;
+import com.nhlstenden.jabberpoint.JabberPoint;
+import com.nhlstenden.jabberpoint.core.DefaultPresentationData;
 
 class PrevSlideCommandTest {
 
     private JabberPoint jabberPoint;
-    private Presentation presentation;
+    private DefaultPresentationData presentation;
     private PrevSlideCommand prevSlideCommand;
     private Receiver receiver;
 
     @BeforeEach
     void setup() {
         this.jabberPoint = new JabberPoint();
-        this.presentation = new Presentation();
-        this.receiver = new Receiver(this.presentation, this.jabberPoint);
-        this.prevSlideCommand = new PrevSlideCommand(this.receiver);
+        this.presentation = new DefaultPresentationData();
+        this.receiver = new Receiver(presentation, jabberPoint);
+        this.prevSlideCommand = new PrevSlideCommand(receiver);
 
-        this.presentation.append(new Slide());
-        this.presentation.append(new Slide());
-        this.presentation.append(new Slide());
+        this.presentation.addSlide(new Slide());
+        this.presentation.addSlide(new Slide());
+        this.presentation.addSlide(new Slide());
     }
 
     @Test
-    void testExecute_PrevSlide_ShouldReturn2() {
-        this.presentation.setSlideNumber(3);
+    void testExecute() {
+        this.presentation.setCurrentSlideNumber(2);
         this.prevSlideCommand.execute();
-        assertEquals(2, this.presentation.getSlideNumber());
+        assertEquals(1, this.presentation.getCurrentSlideNumber());
     }
 }

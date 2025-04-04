@@ -1,0 +1,17 @@
+com/nhlstenden/jabberpoint/AccessorTest.class
+com/nhlstenden/jabberpoint/core/DefaultPresentationDataTest.class
+com/nhlstenden/commandpattern/KeyControllerTest.class
+com/nhlstenden/factorypattern/SlideItemTest.class
+com/nhlstenden/commandpattern/NewPageCommandTest.class
+com/nhlstenden/factorypattern/SlideItemTest$TestBitmapItem.class
+com/nhlstenden/factorypattern/SlideItemFactoryTest.class
+com/nhlstenden/factorypattern/SlideTest.class
+com/nhlstenden/commandpattern/NextSlideCommandTest.class
+com/nhlstenden/commandpattern/OpenFileCommandTest.class
+com/nhlstenden/commandpattern/GoToCommandTest.class
+com/nhlstenden/jabberpoint/XMLAccessorTest.class
+com/nhlstenden/commandpattern/ReceiverTest.class
+com/nhlstenden/commandpattern/PrevSlideCommandTest.class
+com/nhlstenden/factorypattern/SlideViewerFrameTest.class
+com/nhlstenden/commandpattern/SaveFileCommandTest.class
+com/nhlstenden/commandpattern/MenuControllerTest.class
