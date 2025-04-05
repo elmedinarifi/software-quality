@@ -47,7 +47,6 @@ public class BitmapItem extends SlideItem
         this.bufferedImage = bufferedImage;
     }
 
-
     public String getName()
     {
         return this.imageName;
