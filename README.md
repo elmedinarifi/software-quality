@@ -26,6 +26,19 @@ This project is a refactored version of JabberPoint, a Java-based presentation t
 
 ## Getting Started
 
+### Project Documentation
+
+All relevant documentation, including system analyses, technical advice and the UML diagrams can be found in the Assets folder.
+
+> 📁 [View the `Assets` folder](./Assets)
+
+This folder contains:
+- `Systeemanalyse.pdf` – System analyses of the previous version of the project
+- `Adviesdocument.pdf` – Advice document for the new version of the project
+- `HerontwerpAdvies.asta` – UML diagrams of the advice
+
+Make sure to check this folder if you're looking for detailed documentation on the codebase or the refactoring process.
+
 ### Prerequisites
 - Java 21 or higher
 - Maven 3.8+
